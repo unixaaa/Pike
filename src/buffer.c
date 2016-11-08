@@ -29,14 +29,14 @@ PMOD_EXPORT void buffer_make_space(struct byte_buffer *b, size_t len) {
         if (DO_SIZE_T_MUL_OVERFLOW(new_length, 2, &new_length)) goto OUT_OF_MEMORY;
     }
 
-    /* fprintf(stderr, "BUF { left=%ull; length=%ull; dst=%p; }\n", b->left, b->length, b->dst); */
+    /* fprintf(stderr, "BUF { left=%llu; length=%llu; dst=%p; }\n", b->left, b->length, b->dst); */
 
     ptr = realloc(buffer_ptr(b), new_length);
 
     if (!ptr) goto OUT_OF_MEMORY;
 
-    /* fprintf(stderr, "realloc(%p, %ull) = %p\n", buffer_ptr(b), new_length, ptr); */
-    /* fprintf(stderr, "content_length: %ull\n", content_length); */
+    /* fprintf(stderr, "realloc(%p, %llu) = %p\n", buffer_ptr(b), new_length, ptr); */
+    /* fprintf(stderr, "content_length: %llu\n", content_length); */
 
     b->dst = (char*)ptr + content_length;
     b->length = new_length;
